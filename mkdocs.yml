@@ -1,0 +1,92 @@
+
+
+site_name: Documentação do Projeto
+site_description: Guia técnico e institucional
+site_author: Pedro Kenji
+site_url: https://pedrokenji.github.io/meu-site/  # ajuste depois se publicar
+
+
+
+nav:
+  - Início: index.md
+  - Classificador de Despesas: classificador-dcppn.md
+  - Seções:
+      - Sobre: sobre.md
+      - Contato: contato.md
+      - Referências: referencias.md
+
+
+
+theme:
+  name: material
+  language: pt-BR
+  features:
+    - navigation.instant          # navegação sem recarregar página
+    - navigation.expand            # menu lateral expandido por padrão
+    - navigation.sections          # exibe títulos agrupados por seção
+    - navigation.top               # botão "voltar ao topo"
+    - content.code.copy            # botão de copiar em blocos de código
+    - search.suggest               # sugestões na busca
+    - search.highlight             # destaca termos buscados
+    - header.autohide              # esconde o topo ao rolar
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: dark blue
+      toggle:
+        icon: material/lightbulb-outline
+        name: Modo escuro
+    - scheme: slate
+      primary: indigo
+      accent: dark blue
+      toggle:
+        icon: material/lightbulb
+        name: Modo claro
+  font:
+    text: "Roboto"
+    code: "Roboto Mono"
+  icon:
+    logo: material/library
+    repo: fontawesome/brands/github
+  favicon: images/favicon.png
+
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/pedrokenji
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/pedrokenji
+  generator: false  # remove "Made with MkDocs" do rodapé
+
+
+
+plugins:
+  - search
+
