@@ -10,6 +10,7 @@ site_url: https://pedrokenji.github.io/meu-site/  # ajuste depois se publicar
 nav:
   - Início: index.md
   - Classificador de Despesas: classificador-dcppn.md
+  - Últimas atualizações: ultimas-atualizacoes.md
   - Seções:
       - Sobre: sobre.md
       - Contato: contato.md
