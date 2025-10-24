@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://pedrokenji.github.io/meu-site/</loc>
-         <lastmod>2025-10-21</lastmod>
+         <lastmod>2025-10-24</lastmod>
     </url>
     <url>
          <loc>https://pedrokenji.github.io/meu-site/classificador-dcppn/</loc>
-         <lastmod>2025-10-21</lastmod>
+         <lastmod>2025-10-24</lastmod>
+    </url>
+    <url>
+         <loc>https://pedrokenji.github.io/meu-site/ultimas-atualizacoes/</loc>
+         <lastmod>2025-10-24</lastmod>
     </url>
 </urlset>
