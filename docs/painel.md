@@ -1,5 +1,3 @@
-# 🧾 Painel de Atualização – DCPPN
-
 <form id="novoAtoForm" style="display:flex;flex-direction:column;gap:10px;max-width:700px;">
   <label><b>Número do Ato</b></label>
   <input type="text" id="numero" placeholder="Ex: 149" required>
