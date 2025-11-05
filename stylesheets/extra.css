@@ -1,14 +1,19 @@
-/* Deixa todos os títulos (h1–h6) em negrito */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700 !important;
-}
-
-/* Opcional: dá leve ajuste no espaçamento e contraste */
-h1, h2, h3 {
+  color: #64B5F6 !important;  
   letter-spacing: -0.3px;
-  color: var(--md-default-fg-color--light);
 }
 
-h4, h5, h6 {
-  color: var(--md-default-fg-color--lighter);
+h1 {
+  color: #90CAF9 !important;  
+}
+
+
+[data-md-color-scheme="default"] h1,
+[data-md-color-scheme="default"] h2,
+[data-md-color-scheme="default"] h3,
+[data-md-color-scheme="default"] h4,
+[data-md-color-scheme="default"] h5,
+[data-md-color-scheme="default"] h6 {
+  color: #1976D2 !important;  
 }
