@@ -27,18 +27,18 @@ theme:
     - search.highlight             # destaca termos buscados
     - header.autohide              # esconde o topo ao rolar
   palette:
+    - scheme: slate        # modo escuro como padrão
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Alternar para modo claro
     - scheme: default
-      primary: indigo
-      accent: dark blue
+      primary: blue
+      accent: indigo
       toggle:
-        icon: material/lightbulb-outline
-        name: Modo escuro
-    - scheme: slate
-      primary: indigo
-      accent: dark blue
-      toggle:
-        icon: material/lightbulb
-        name: Modo claro
+        icon: material/weather-night
+        name: Alternar para modo escuro
   font:
     text: "Roboto"
     code: "Roboto Mono"
