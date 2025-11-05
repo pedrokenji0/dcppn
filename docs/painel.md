@@ -1,3 +1,9 @@
+# 🧾 Painel de Atualização – DCPPN
+
+> Ferramenta interna para criação automática de **Atos DCPPN** diretamente no repositório GitHub.
+
+---
+
 <form id="novoAtoForm" style="display:flex;flex-direction:column;gap:10px;max-width:700px;">
   <label><b>Número do Ato</b></label>
   <input type="text" id="numero" placeholder="Ex: 149" required>
@@ -34,8 +40,9 @@
   <label><b>Solução encontrada</b></label>
   <textarea id="solucao" rows="6" placeholder="Descreva a solução encontrada"></textarea>
 
-  <label><b>Anexos</b></label>
-  <input type="text" id="anexos" placeholder="Ex: Não houve / PDF anexo">
+  <label><b>Anexar PDF (opcional)</b></label>
+  <input type="file" id="pdfFile" accept="application/pdf">
+  <iframe id="pdfPreview" style="width:100%;height:400px;border:1px solid #ccc;display:none;"></iframe>
 
   <button type="submit" style="padding:10px;background-color:#1976D2;color:white;border:none;border-radius:5px;">Gerar e Salvar Ato</button>
 </form>
@@ -43,6 +50,23 @@
 <script>
 const repo = "pedrokenji0/dcppn";
 const branch = "main";
+
+const pdfInput = document.getElementById("pdfFile");
+const pdfPreview = document.getElementById("pdfPreview");
+
+pdfInput.addEventListener("change", () => {
+  const file = pdfInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      pdfPreview.src = e.target.result;
+      pdfPreview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  } else {
+    pdfPreview.style.display = "none";
+  }
+});
 
 document.getElementById("novoAtoForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -57,7 +81,6 @@ document.getElementById("novoAtoForm").addEventListener("submit", async (e) => {
   const substituido = document.getElementById("substituido").value.trim();
   const contexto = document.getElementById("contexto").value.trim();
   const solucao = document.getElementById("solucao").value.trim();
-  const anexos = document.getElementById("anexos").value.trim();
 
   const markdown = `
 # Ato ${n}
@@ -98,13 +121,14 @@ ${solucao}
 
 ## Anexos
 
-${anexos}
+${pdfInput.files.length ? `📎 [Abrir PDF Anexo](anexos/ato-${n}.pdf)` : "Não houve"}
 `;
 
-  const filename = `ato-${n}.md`;
-  const path = `docs/atos/${filename}`;
   const token = prompt("Insira seu token GitHub (repo:write):");
+  const basePath = `docs/atos/`;
+  const path = `${basePath}ato-${n}.md`;
 
+  // 1️⃣ Enviar o Markdown principal
   const payload = {
     message: `Criação automática do Ato ${n}`,
     content: btoa(markdown),
@@ -120,6 +144,31 @@ ${anexos}
     body: JSON.stringify(payload)
   });
 
+  // 2️⃣ Se houver PDF, enviar também
+  if (pdfInput.files.length) {
+    const file = pdfInput.files[0];
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const pdfBase64 = event.target.result.split(",")[1];
+      const pdfPath = `docs/atos/anexos/ato-${n}.pdf`;
+      const pdfPayload = {
+        message: `Anexo PDF do Ato ${n}`,
+        content: pdfBase64,
+        branch: branch
+      };
+
+      await fetch(`https://api.github.com/repos/${repo}/contents/${pdfPath}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": `token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(pdfPayload)
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+
   if (response.ok) {
     alert("✅ Ato criado com sucesso! O site será atualizado automaticamente.");
   } else {
@@ -128,4 +177,3 @@ ${anexos}
   }
 });
 </script>
-
