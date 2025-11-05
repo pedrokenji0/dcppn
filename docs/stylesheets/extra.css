@@ -1,0 +1,14 @@
+/* Deixa todos os títulos (h1–h6) em negrito */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+}
+
+/* Opcional: dá leve ajuste no espaçamento e contraste */
+h1, h2, h3 {
+  letter-spacing: -0.3px;
+  color: var(--md-default-fg-color--light);
+}
+
+h4, h5, h6 {
+  color: var(--md-default-fg-color--lighter);
+}

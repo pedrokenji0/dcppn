@@ -28,8 +28,8 @@ theme:
     - header.autohide              # esconde o topo ao rolar
   palette:
     - scheme: slate        # modo escuro como padrão
-      primary: blue
-      accent: indigo
+      primary: blue grey
+      accent: light blue
       toggle:
         icon: material/weather-sunny
         name: Alternar para modo claro
@@ -87,3 +87,5 @@ extra:
 plugins:
   - search
 
+extra_css:
+  - stylesheets/extra.css
